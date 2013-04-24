@@ -1,0 +1,17 @@
+function relative_residual_periodicity(res,fs)
+
+i=2:5; % Analysis scales [2000, 1000, 500, 250]
+N=length(i);
+
+%% Wavelet decomposition
+[~,y_n] = do_aless_decomp(res,fs,i);
+
+%% Get periodicity strength across the different scale
+ACF_amp_temp=get_ACF_amp(y_n(end,:),fs);
+ACF_amp=zeros(length(i),length(ACF_amp_temp));
+for n=1:N
+   
+    AFX_amp(n,:) = get_ACF_amp(y_n(n,:),fs);
+end
+
+plot(((ACF_amp1+ACF_amp2+ACF_amp3+ACF_amp4+ACF_amp5)/5).*ACF_amp1)

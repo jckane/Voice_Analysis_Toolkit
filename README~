@@ -1,0 +1,125 @@
+######################################################################
+########### VOICE ANALYSIS TOOLKIT ###################################
+######################################################################
+
+This software has been coded by John Kane at the Phonetics and Speech
+Laboratory in Trinity College Dublin, early-2013. This work is supported 
+by the Science Foundation Ireland, Grant 07/CE/I1142 (Centre for Next 
+Generation Localisation, www.cngl.ie) and Grant 09/IN.1/I2631 (FASTNET).
+
+The toolkit contains a range of matlab files for glottal source and 
+voice quality analysis. For most of the algorithms Matlab versions 
+since 2009 be suitable. However, for the CreakyDetection_CompleteDetection.m function only Matlab versions since Matlab R2011a (and including the neural network toolbox) will be able to run it. Note that the creak detection algorithm used here was developed jointly by John Kane (Phonetics and Speech Laboratory in Trinity College Dublin) and Thomas Drugman (University of Mons, Belgium) and that same algorithm is also available within the GLOAT toolkit.
+
+GETTING STARTED
+
+If requiring the use of the LF mode function the lf_Area_newton.c in the general_fcns/ 
+directory must be mex-ed, e.g., use this command: 
+
+mex lf_Area_newton.c 
+
+in the general_fcns/ directory.
+
+Note however there mex-ed versions are already included for Linux (32-bit), Mac (64-bit) and Windows (32-bit and 64-bit).
+
+Note also that the SRH f0/VUV tracking algorithm from the GLOAT toolkit
+(Thomas Drugman, University of Mons) is used with this toolkit. The GLOAT
+toolkit can be downloaded from here:
+
+GLOAT    - http://tcts.fpms.ac.be/~drugman/Toolbox/GLOAT.zip
+
+and the publication:
+
+T.Drugman, A.Alwan, Joint Robust Voicing Detection and Pitch Estimation Based on Residual Harmonics, Interspeech11, Firenze, Italy, 2011
+
+
+
+To see details of the usage of each of the methods, simply use the
+help command in matlab, e.g.,
+
+help SE_VQ
+
+
+TESTING
+
+To do a test-run of the software on an included ARCTIC utterance, 
+use the command: 
+
+[x,fs]=wavread('arctic_a0007.wav');
+test_Voice_Analysis_Toolkit(x,fs)
+
+
+FEEDBACK
+
+Note that the code here has been developed and tested in a UNIX based 
+environment. None of the directory handling has been hardcoded and hence 
+there should not be problems running this on a windows machine. Also, 
+the code has been developed for Matlab 2011b. There may be unforeseen 
+problems with previous (and potentially future) versions. If you have 
+any difficulties or issues with the code please email me: kanejo@tcd.ie
+
+
+NOVEL ALGORITHMS - BRIEF DESCRIPTION
+
+SE_VQ - Algorithm for detecting glottal closure instants. This is a further
+        further development of the SEDREAMS algorithm (Drugman et al 2012)
+        and is designed to improve selection of GCI candidates through the 
+	        use of a dynamic programming algorithm. It also involves a 
+	        post-processing step to remove false positives in creaky
+	        voice regions.
+
+dyProg_LF (COMING SOON!!) - Algorithm for fitting LF model pulses to an estimated glottal  
+	        flow derivative waveform. The method involves an exhaustive search 
+	        process using Rd, a dynamic programming algorithm to choose the 
+	        optimal path of Rd values and a subsequent optimisation algorithm  
+	        in order to refine the fit by varying all three R-parameters
+
+MDQ  - 	The maxima dispersion quotient (MDQ) is used for discriminating 
+	        breathy to tense voice based on wavelet-based decomposition of the 
+	        LP-residual signal. Dispersion is measured in the vicinity of the GCI
+
+creak_detect - An algorithm for detecting creaky voice regions from speech 
+	       signals. The detection is based on a combination of new and existing 
+	       acoustic features relevant to creaky voice which are used as input
+	       features to a artificial neural networks based classifier, which has been trained 
+	       on a wide range of speech. Note that the development of this method 
+	       has been done in collaboration with Thomas Drugman, University of Mons, 
+	       Belgium.
+
+REFERENCES
+
+Please refer to the relevant references below when using any of these  
+algorithms in published studies.
+
+Kane, J., Gobl, C., (2013) `Evaluation of glottal closure instant 
+        detection in a range of voice qualities', Speech Communication 
+        55(2), pp. 295-314.
+Kane, J., Gobl, C. (2013) ``Automating manual user strategies for
+        precise voice source analysis'', Speech Communication 55(3), pp.
+        397-414.
+Kane, J., Yanushevskaya, I., Ni Chasaide, A., Gobl, C., (2012) Exploiting time 
+        and frequency domain measures for precise voice source parameterisation, 
+        Proceedings of Speech Prosody.
+Kane, J., Gobl, C., (2013)``Wavelet maxima dispersion for breathy to tense 
+        voice discrimination'', IEEE Trans. Audio Speech & Language
+        Processing, 21(6), pp. 1170-1179.
+Kane, J., Gobl, C., (2011) `Identifying regions of non-modal phonation using 
+        features of the wavelet tranform', Proceedings of Interspeech 2011.
+Drugman, T., Kane, J., Gobl, C., `Automatic Analysis of Creaky
+        Excitation Patterns', Submitted to Computer Speech and
+        Language.
+Kane, J., Drugman, T., Gobl, C., (2013) `Improved automatic 
+       detection of creak', 27(4), pp. 1028-1047, Computer Speech and Language.
+Drugman, T., Kane, J., Gobl, C. (2012) Resonator-based creaky voice detection, 
+	       Proceedings of Interspeech.
+Drugman, T., Kane, J., Gobl, C. (2012) Modeling the creaky excitation for 
+	       parametric speech synthesis, Proceedings of Interspeech.
+
+
+######################################################################
+
+
+
+
+
+

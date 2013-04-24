@@ -1,0 +1,17 @@
+function get_ACF_amp(x,fs)
+
+% Function to detect strongest peak in the autocorrelation function
+% measured on a fixed frame-basis
+
+frameLen=32/1000*fs;
+frameShift=10/1000*fs;
+
+ACF_amp=zeros(round((length(x)-frameLen)/frameShift),1);
+
+start=1;
+stop=start+frameLen-1;
+
+%% Do proc
+while stop < length(x)
+    
+end

@@ -1,0 +1,10 @@
+function get_residual_Xcorr(res,fs)
+
+% Function to do cross correlation between different wavelet scales, in a
+% similar manner to that which is done in the F1F3syn method (ishi et al)
+
+i=[2 5];
+N=length(i);
+
+med_len=7;
+sm_len=7;
